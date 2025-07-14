@@ -11,6 +11,21 @@ const getAll = async (req, res) => {
 
 }
 
+const getById = async(req, res) => {
+    try {
+        const {id} = req.params;
+        const movimiento = await model.getById(id);
+
+        if(!movimiento) {
+            return res.status(404).json({error: 'Movimiento no encontrado'})
+        }
+
+        res.json(movimiento)
+    } catch (error) {
+        res.status(500).json({error: 'Error al obtener movimiento por ID'})
+    }
+}
+
 const create = async (req, res) => {
     try {
         const nuevoMovimiento = await model.create(req.body);
@@ -45,6 +60,7 @@ const remove = async (req, res) => {
 
 module.exports = {
     getAll,
+    getById,
     create,
     update,
     remove

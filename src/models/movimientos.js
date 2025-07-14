@@ -6,6 +6,11 @@ const getAll = async () => {
   return result.rows;
 };
 
+const getById = async (id) => {
+  const result = await db.query("SELECT * FROM movimientos WHERE id = $1", [id]);
+  return result.rows[0];
+}
+
 const create = async (movimiento) => {
   const { description, amount, type, category, date } = movimiento;
 
@@ -37,6 +42,7 @@ const remove = async (id) => {
 
 module.exports = {
   getAll,
+  getById,
   create,
   update,
   remove,

@@ -9,6 +9,8 @@ const movimientosController = require('../controllers/movimientos');
 
 router.get('/', movimientosController.getAll);
 
+router.get('/:id', movimientosController.getById)
+
 router.post('/', movimientosController.create);
 
 router.put('/:id', movimientosController.update);
